@@ -16,7 +16,7 @@ train_set = train_set[:,:,:]
 validation_set = validation_set[:,:,:]
 
 n_series = 1
-n_features = 2    #timing & volume
+n_features = 1    #timing & volume
 
 config = {
     #Shape (2,10) means  2 layers of 10 neurons
