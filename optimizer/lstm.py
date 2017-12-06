@@ -95,7 +95,7 @@ def d(u_tm1, u_t, z_t, c):
     #u_tm1 * z_t : gain at time t (you use action in precedence, because the agent decide now based on what saw before)
     #c * |u_t - u_tm1| is the cost of change action
     #divided by 2 because of a correction
-    return u_tm1 * z_t - c * tf.abs(u_t-u_tm1) / 2.
+    return u_t * z_t - c * tf.abs(u_t-u_tm1) / 2.
     
 class LSTMNet(Optimizer):
     
