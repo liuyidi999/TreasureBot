@@ -7,8 +7,8 @@ from core.bot import Bot
 
 print "Loading dataset"
 
-train_set = np.load("dataset/sp500min/train_set.npy")
-validation_set = np.load("dataset/sp500min/validation_set.npy")
+train_set = np.load("dataset/SP500/train_set.npy")
+validation_set = np.load("dataset/SP500/validation_set.npy")
 
 #very short sequence for debugging purpose
 
@@ -20,10 +20,10 @@ n_features = 1    #timing & volume
 
 config = {
     #Shape (2,10) means  2 layers of 10 neurons
-    "sharedBoxShape" : (4, 10),
-    "blocksShape": (5,10),
+    "sharedBoxShape" : (1,10),
+    "blocksShape": (1,10),
     "nLSTMCells": 10,
-    "decisionBlockShape": (3,10),
+    "decisionBlockShape": (1,10),
     "dropout": 1.,
     "batch_size": 10
 }
