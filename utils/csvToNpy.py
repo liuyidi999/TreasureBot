@@ -160,14 +160,17 @@ class Dataset:
         min_price = []
         max_price = []
         volume = []
-        
+        lag_close_price=[]
         for last_indx, next_indx in zip(indexes[:-1],indexes[1:]):
             open_price.append(self.open_price[last_indx])
             close_price.append(self.close_price[next_indx-1])
             min_price.append(min(self.min_price[last_indx:next_indx]))
             max_price.append(max(self.max_price[last_indx:next_indx]))
             volume.append(sum(self.volume[last_indx:next_indx]))
-        
+            if next_indx-2<0:
+                lag_close_price.append.(0.0)
+            else:
+                lag_close_price.append.(self.close_price[next_indx-2])
         open_price.append(self.open_price[-1])
         close_price.append(self.close_price[-1])
         min_price.append(self.min_price[-1])
@@ -179,9 +182,13 @@ class Dataset:
         self.min_price = min_price
         self.max_price = max_price
         self.volume = volume
+        self.lag_close_price=lag_close_price
         
-    def get_derivate_matrix(self):
-        return (np.matrix([self.close_price]) - np.matrix([self.open_price])).T
+    def get_derivate_martrix(self):
+        return (np.matrix([self.close_price]) - np.matrix([self.lag_close_price])).T
+        
+    #def get_derivate_matrix(self):
+        #return (np.matrix([self.close_price]) - np.matrix([self.open_price])).T
         
     def get_commission_matrix(self):
         return np.matrix([map(self.commission_f, self.open_price)]).T
